@@ -10,7 +10,7 @@ Here are some of the project's key features:
 * SQLite database for managing information
 * Integration with Prisma for data handling
 * Responsive design with Tailwind CSS
-</br>
+  
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
@@ -20,7 +20,6 @@ Technologies used in the project:
 * Prisma
 * SQLite
 
-</br>
 <h2>📦 Getting Started</h2>
 
 To get started with this project, follow these steps:
