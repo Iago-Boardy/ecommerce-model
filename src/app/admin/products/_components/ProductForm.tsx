@@ -47,10 +47,10 @@ export function ProductForm() {
 }
 
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus();//VER COMO ISSO FUNCIONA MELHOR QUE NAO VI PORQUE TO COM SONO PKRL, MAS TEM A VER COM A MENSAGEM DE ERRO E COISAS ASSIM
   
   return (
-    <Button type="submit" disabled={pending}>
+    <Button type="submit" disabled={pending}>  
       {pending ? "Saving..." : "Save"}
     </Button>
   );
