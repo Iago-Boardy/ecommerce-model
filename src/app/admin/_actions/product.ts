@@ -54,3 +54,7 @@ export async function addProduct(prevState: unknown, formData: FormData) { //act
 
    redirect("/admin/products")
 }
+
+export async function toggleProductAvailability(id: string, isAvaliableForPurchase: boolean) {
+  await db.product.update({ where: {id}, data: { isAvaliableForPurchase}} )
+}
