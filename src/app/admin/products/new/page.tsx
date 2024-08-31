@@ -3,7 +3,7 @@ import { ProductForm } from "../_components/ProductForm";
 
 export default function NewProductPage() {
   return <>
-    <PageHeader>Add Product</PageHeader>
+    <PageHeader>Adicionar Produto</PageHeader>
     <ProductForm/>
   </>
 }

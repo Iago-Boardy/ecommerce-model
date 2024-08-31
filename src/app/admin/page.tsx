@@ -50,18 +50,18 @@ export default async function AdminDashboard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <DashboardCard 
-      title="Sales" 
-      subtitle={`${formatNumber(salesData.numberOfSales)} Orders`}
+      title="Vendas" 
+      subtitle={`${formatNumber(salesData.numberOfSales)} Pedidos`}
       body={formatCurrency(salesData.amount)}  
       />
       <DashboardCard 
-      title="Customers" 
-      subtitle={`${formatCurrency(userData.avarageValuePerUser)} Avarage Value`}
+      title="Clientes" 
+      subtitle={`${formatCurrency(userData.avarageValuePerUser)} Valor Médio`}
       body={formatNumber(userData.userCount)}  
       />
       <DashboardCard 
-      title="Active Products" 
-      subtitle={`${formatNumber(productData.inactiveCount)} Inactive Products`}
+      title="Produtos Ativos" 
+      subtitle={`${formatNumber(productData.inactiveCount)} Produtos Inativos`}
       body={formatNumber(productData.activeCount)}  
       />
     </div>

@@ -8,13 +8,24 @@ import { redirect } from "next/navigation"
 const fileSchema = z.instanceof(File, { message: "Required "})
 const imageSchema = fileSchema.refine(file => file.size == 0 || file.type.startsWith("image/"))
 
-const addSchema = z.object ({
-  name: z.string().min(1),
-  description: z.string().min(1),
-  priceInCents: z.coerce.number().int().min(1),
-  file: fileSchema.refine(file => file.size > 0, "Required"),
-  image: imageSchema.refine(file => file.size > 0, "Required"),
-})
+const addSchema = z.object({
+  name: z.string().min(1, { message: "O nome é obrigatório." }),
+  description: z.string().min(1, { message: "A descrição é obrigatória." }),
+  priceInCents: z
+    .preprocess((value) => {
+      const parsed = parseFloat(value as string);
+      return isNaN(parsed) ? undefined : parsed;
+    }, z.number()
+    .int({ message: "O preço deve ser um número inteiro." })
+    .min(1, { message: "O preço deve ser maior que 0." })
+    .or(z.undefined()) 
+    .default(0)
+    .refine(value => value !== undefined, { message: "O preço é obrigatório." })),
+  file: fileSchema.refine(file => file.size > 0, { message: "O arquivo é obrigatório." }),
+  image: imageSchema.refine(file => file.size > 0, { message: "A imagem é obrigatória." }),
+});
+
+
 
 export async function addProduct(prevState: unknown, formData: FormData) { //actions devem ser async e alem disso, devemos cuidar com a questao de prevState que serve pra adicionar msg de erro
   const result = addSchema.safeParse(Object.fromEntries(formData.entries())) // retorna um object com informacoes validadas
@@ -33,6 +44,7 @@ export async function addProduct(prevState: unknown, formData: FormData) { //act
    await fs.writeFile(`public${imagePath}`, Buffer.from(await data.image.arrayBuffer()))
 
    await db.product.create({ data: {
+    isAvaliableForPurchase: false,
     name: data.name,
     description: data.description,
     priceInCents: data.priceInCents,

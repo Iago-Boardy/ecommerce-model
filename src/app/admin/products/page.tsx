@@ -6,9 +6,9 @@ import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components
 export default function AdminProductPages() {
   return <>
     <div className="flex justify-between items-center gap-4">
-      <PageHeader>Products</PageHeader>
+      <PageHeader>Produtos</PageHeader>
       <Button asChild>
-        <Link href="/admin/products/new">Add Product</Link>
+        <Link href="/admin/products/new">Adicione um Produto</Link>
       </Button>
     </div>
 
@@ -23,13 +23,13 @@ function ProductsTable() {
       <TableHeader>
         <TableRow>
           <TableHead className="w-0">
-            <span className="sr-only">Avaliable For Purchase</span>
+            <span className="sr-only">Disponível para Compra</span>
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Orders</TableHead>
+          <TableHead>Nome</TableHead>
+          <TableHead>Preço</TableHead>
+          <TableHead>Pedidos</TableHead>
           <TableHead className="w-0">
-            <span className="sr-only">Actions</span>
+            <span className="sr-only">Ações</span>
           </TableHead>
         </TableRow>
       </TableHeader>
