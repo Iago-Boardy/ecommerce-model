@@ -3,7 +3,17 @@ import { PageHeader } from "../_components/PageHeader";
 import Link from "next/link";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import db from "@/db/db";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { CheckCircle2, MoreVertical, XCircle } from "lucide-react";
+import { formatCurrency, formatNumber } from "@/lib/formatters";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 export default function AdminProductPages() {
   return <>
@@ -50,18 +60,48 @@ async function ProductsTable() {
       </TableHeader>
 
       <TableBody>
-          {products.map(product =>(
-            <TableRow key={product.id}>
-              <TableCell>
-
-                {product.isAvaliableForPurchase ? //CONTINUAR CODANDO AQUI PARA PUXAR AS INFORMACOES DO BANCO DE DADOS E PRINTAR ELAS AQUI NESSA TABLE
-                <> <CheckCircle2/> </> : 
-                <> <XCircle/> </>}
-
-              </TableCell>
-            </TableRow>
-          ))}
+        {products.map(product => (
+          <TableRow key={product.id}>
+            <TableCell>
+              {product.isAvaliableForPurchase ? (
+                <>
+                  <span className="sr-only">Disponível</span>
+                  <CheckCircle2 />
+                </>
+              ) : (
+                <>
+                <span className="sr-only">Indisponível</span>
+                <XCircle />
+                </>
+              )}
+            </TableCell>
+            <TableCell>{ product.name}</TableCell>
+            <TableCell>{ formatCurrency(product.priceInCents / 100) }</TableCell>
+            <TableCell>{ formatNumber(product._count.orders) }</TableCell>
+            <TableCell>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <MoreVertical/>
+                  <span className="sr-only">Actions</span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild>
+                    <a download href={`/admin/products/${product.id}/download`}>
+                    Baixar
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/admin/products/${product.id}/edit`}>
+                    Editar
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              </TableCell>  
+          </TableRow>
+        ))}
       </TableBody>
+
     </Table>
   </>
 }
