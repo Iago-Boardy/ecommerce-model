@@ -16,32 +16,32 @@ export function ProductForm() {
   return <>
   <form action={action} className="space-y-8">
     <div className="space-y-2">
-      <Label htmlFor="name">Name</Label>
+      <Label htmlFor="name">Nome</Label>
       <Input type="text" id="name" name="name"/>
       {error.name && <div className="text-destructive">{error.name}</div>}
     </div>
 
     <div className="space-y-2">
-      <Label htmlFor="priceInCents">Price Paid In Cents</Label>
+      <Label htmlFor="priceInCents">Preço pago em centavos</Label>
       <Input type="number" id="priceInCents" name="priceInCents" value={priceInCents} onChange={e => setPriceInCents(Number(e.target.value) || undefined )}/>
       <div className="text-muted-foreground">{formatCurrency((priceInCents || 0) / 100)}</div>
       {error.priceInCents && <div className="text-destructive">{error.priceInCents}</div>}
     </div>
 
     <div className="space-y-2">
-      <Label htmlFor="description">Description</Label>
+      <Label htmlFor="description">Descrição</Label>
       <Textarea id="description" name="description"/>
       {error.description && <div className="text-destructive">{error.description}</div>}
     </div>
 
     <div className="space-y-2">
-      <Label htmlFor="file">File</Label>
+      <Label htmlFor="file">Arquivo</Label>
       <Input type="file" id="file" name="file"/>
       {error.file && <div className="text-destructive">{error.file}</div>}
     </div>
 
     <div className="space-y-2">
-      <Label htmlFor="image">Image</Label>
+      <Label htmlFor="image">Imagem</Label>
       <Input type="file" id="image" name="image"/>
       {error.image && <div className="text-destructive">{error.image}</div>}
     </div>
@@ -56,7 +56,7 @@ function SubmitButton() {
   
   return (
     <Button type="submit" disabled={pending}>  
-      {pending ? "Saving..." : "Save"}
+      {pending ? "Salvando..." : "Salvar"}
     </Button>
   );
 }
