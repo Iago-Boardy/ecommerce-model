@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { ActiveToggleDropdownItem, DeleteDropdownItem } from "./_components/ProductActions";
 
 
 export default function AdminProductPages() {
@@ -95,6 +96,11 @@ async function ProductsTable() {
                     Editar
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuSeparator/>
+                  <ActiveToggleDropdownItem id={product.id} isAvailableForPurchase={product.isAvaliableForPurchase}/>
+          
+                  <DeleteDropdownItem id={product.id} disabled={product._count.orders > 0}/>
+
                 </DropdownMenuContent>
               </DropdownMenu>
               </TableCell>  

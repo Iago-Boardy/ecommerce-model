@@ -1,18 +1,38 @@
-import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+'use client'
+
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { useTransition } from "react";
-import { toggleProductAvailability } from "../../_actions/product";
+import { deleteProduct, toggleProductAvailability } from "../../_actions/product";
 
-export function ActiveToggleDropdownItem( { id, isAvailableForPurchase}: { id:string, isAvailableForPurchase: boolean}) {
+export function ActiveToggleDropdownItem({ id, isAvailableForPurchase }: { id: string, isAvailableForPurchase: boolean }) {
   const [isPending, startTransition] = useTransition()
- return <DropdownMenuItem onClick={() =>  {
-  startTransition(async () => {
-    await toggleProductAvailability(id, !isAvailableForPurchase)
-  })
- }}>
-
- </DropdownMenuItem>
+  return ( 
+    <DropdownMenuItem
+      disabled={isPending}
+      onSelect={() => {
+        startTransition(async () => {
+          await toggleProductAvailability(id, !isAvailableForPurchase)
+        })
+      }}
+    >
+      {isAvailableForPurchase ? "Desativar" : "Ativar"}
+    </DropdownMenuItem>
+  )
 }
 
-export function DeleteDropdownItem() {
-  
+export function DeleteDropdownItem({ id, disabled }: { id: string, disabled: boolean }) {
+  const [isPending, startTransition] = useTransition()
+  return ( 
+    <DropdownMenuItem
+      disabled={disabled || isPending}
+      onSelect={() => {
+        startTransition(async () => {
+          await deleteProduct(id)
+        })
+      }}
+      className="text-red-600 focus:text-red-600"
+    >
+      Delete
+    </DropdownMenuItem>
+  )
 }
