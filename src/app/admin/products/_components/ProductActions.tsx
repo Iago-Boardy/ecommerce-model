@@ -24,13 +24,13 @@ export function DeleteDropdownItem({ id, disabled }: { id: string, disabled: boo
   const [isPending, startTransition] = useTransition()
   return ( 
     <DropdownMenuItem
+      variant="destructive"
       disabled={disabled || isPending}
       onSelect={() => {
         startTransition(async () => {
           await deleteProduct(id)
         })
       }}
-      className="text-red-600 focus:text-red-600"
     >
       Delete
     </DropdownMenuItem>

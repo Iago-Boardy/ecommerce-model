@@ -26,7 +26,7 @@ const dropdownMenuItemVariants = cva(
     variants: {
       variant: {
         default: "",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        destructive: "text-red-600 focus:text-red-600 hover:hover:bg-red-500 hover:!text-white",
       },
       inset: {
         true: "pl-8",
