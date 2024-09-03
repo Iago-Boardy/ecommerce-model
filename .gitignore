@@ -31,6 +31,8 @@ yarn-error.log*
 # vercel
 .vercel
 
-# typescript
+# typescript HERE WILL HAVE TO BE CHANGED IF WE WANNA UPLOAD THE PASTES ALSO
 *.tsbuildinfo
 next-env.d.ts
+/products
+/public/products
