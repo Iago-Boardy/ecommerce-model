@@ -8,16 +8,17 @@ import { formatCurrency } from "@/lib/formatters"
 import { useState } from "react"
 import { addProduct } from "../../_actions/product"
 import { useFormState, useFormStatus } from "react-dom" 
+import { Product } from "@prisma/client"
 
-export function ProductForm() {
+export function ProductForm({ product}: {product ?: Product | null}) {
   const [error, action] = useFormState(addProduct, {})
-  const [priceInCents, setPriceInCents] = useState<number>() 
+  const [priceInCents, setPriceInCents] = useState<number | undefined>(product?.priceInCents) 
 
   return <>
   <form action={action} className="space-y-8">
     <div className="space-y-2">
       <Label htmlFor="name">Nome</Label>
-      <Input type="text" id="name" name="name"/>
+      <Input type="text" id="name" name="name" defaultValue={product?.name || ""}/>
       {error.name && <div className="text-destructive">{error.name}</div>}
     </div>
 
@@ -30,7 +31,7 @@ export function ProductForm() {
 
     <div className="space-y-2">
       <Label htmlFor="description">Descrição</Label>
-      <Textarea id="description" name="description"/>
+      <Textarea id="description" name="description" defaultValue={product?.description || ""}/>
       {error.description && <div className="text-destructive">{error.description}</div>}
     </div>
 
