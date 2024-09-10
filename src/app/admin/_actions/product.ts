@@ -26,7 +26,6 @@ const addSchema = z.object({
 });
 
 
-
 export async function addProduct(prevState: unknown, formData: FormData) { //actions devem ser async e alem disso, devemos cuidar com a questao de prevState que serve pra adicionar msg de erro
   const result = addSchema.safeParse(Object.fromEntries(formData.entries())) // retorna um object com informacoes validadas
    if (result.success == false) {
