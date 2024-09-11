@@ -19,7 +19,7 @@ export async function GET(req: NextRequest, { params: { id } }: { params: { id: 
   const extension = product.filePath.split(".").pop()
 
   return new NextResponse(file, { headers: { 
-    "Content-Disposition": `attachement; filename="${product.name}.${extension}"`, 
+    "Content-Disposition": `attachement; filename="${product.name}.${extension}"`,  //AQUI EM RESUMO BAIXAMOS AS IMAGENS
     "Content-Length": size.toString(),
   }})
 
