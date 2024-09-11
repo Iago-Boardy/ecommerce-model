@@ -4,8 +4,8 @@ import { isValidPassword } from "./lib/isValidPassword";
 export async function middleware(req: NextRequest) {
   if ((await isAuthenticated(req)) === false) {
     return new NextResponse("Acesso Negado", 
-      { status: 401, headers: { "WWW-Authenticate": "Basic"}})
-  } 
+      { status: 401, headers: { "WWW-Authenticate": "Basic"}}) //Esse codigo em resumo gera um formulario basico do proprio navegador. Posso ver para estilizar isso melhor e configurar login page
+  }                                                            //para a pagina de admins e configurar uma pagina de erro certinho. Aparentemente so funciona se for em combo
 }
 
 async function isAuthenticated(req: NextRequest) {
