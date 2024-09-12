@@ -14,7 +14,7 @@ type ProductCardProps = {
 
 export function ProductCard({id, name, priceInCents, description, imagePath}: ProductCardProps) {
   return <>
-    <Card className="flex overflow-hidden flex-col">
+    <Card className="flex overflow-hidden flex-col w-[300px]"> {/*Aqui podemos alterar o tamanho do card*/}
       <div className="relative w-full h-auto aspect-video">
         <Image src={imagePath} fill alt={name}/>
       </div>
