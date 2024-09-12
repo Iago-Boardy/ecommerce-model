@@ -33,7 +33,7 @@ type ProductGridSectionProps = {
   productsFetcher: () => Promise<Product[]>
 }
 
-function ProductGridSection( { productsFetcher, title}: ProductGridSectionProps) {
+async function ProductGridSection( { productsFetcher, title}: ProductGridSectionProps) {
   return (
   <div className="space-y-4">
     <div className="flex gap-4 ">
@@ -47,7 +47,11 @@ function ProductGridSection( { productsFetcher, title}: ProductGridSectionProps)
     </div>
     
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <ProductCard/>
+      {(await (await productsFetcher()).map(product => (
+        
+        <ProductCard key={product.id} {...product}/>
+      )))}
+      
     </div>
   
   </div>

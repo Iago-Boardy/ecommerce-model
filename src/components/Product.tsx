@@ -23,8 +23,8 @@ export function ProductCard({id, name, priceInCents, description, imagePath}: Pr
         <CardDescription>{formatCurrency(priceInCents / 100)}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="line-clamp-4">{description}</p>
-      </CardContent>
+        <p className="line-clamp-2">{description}</p>
+      </CardContent> 
       <CardFooter>
         <Button asChild size="lg" className="w-full">
           <Link href={`/products/${id}/purchase`}>Comprar</Link>
@@ -33,3 +33,5 @@ export function ProductCard({id, name, priceInCents, description, imagePath}: Pr
     </Card>
   </>
 }
+
+//Aqui em cima, na linha 26 definimos quantas linhas queremos que aparecam no nosso card de descricao
