@@ -1,4 +1,4 @@
-import { ProductCard } from "@/components/Product";
+import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import db from "@/db/db"
 import { Product } from "@prisma/client";
